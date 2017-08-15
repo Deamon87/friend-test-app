@@ -15,7 +15,8 @@ module.exports = {
     },
 
     module: {
-        loaders: [{
+        loaders: [
+        {
             test: /\.js?$/,
             loader: 'babel-loader',
             exclude: /node_modules/,
@@ -23,6 +24,8 @@ module.exports = {
                 presets: ['babel-preset-es2015', 'react']
             }
         },
+        // Bootstrap 3
+        { test:/bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/, loader: 'imports-loader?jQuery=jquery' },
         {
             test: /\.scss$/,
             loaders: ["style", "css", "sass"]

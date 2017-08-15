@@ -3,7 +3,7 @@ var path = require('path');
 var app = express();
 
 app.get('/', function (req, res) {
-    res.sendFile('static/index.html');
+    res.sendFile(path.join(__dirname,'static/index.html'));
 });
 
 // serve static files
