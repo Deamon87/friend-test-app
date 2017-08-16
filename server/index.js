@@ -2,12 +2,24 @@ var express = require('express');
 var path = require('path');
 var app = express();
 
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname,'static/index.html'));
+//Serve static files
+app.use('/static', express.static(path.join(__dirname, 'static')));
+
+//Check url for api
+app.use(function(req, res, next) {
+    if (!req.url.match(/\/api\/*/g)) {
+        res.sendFile(path.join(__dirname, 'static/index.html'));
+    } else {
+        next();
+    }
 });
 
-// serve static files
-app.use('/static', express.static(path.join(__dirname, 'static')));
+//Router for API
+var router = express.Router();
+
+
+app.use('/api', router);
+
 
 app.listen(8080, function () {
     console.log('Server started at port 8080!');
