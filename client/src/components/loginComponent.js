@@ -24,7 +24,7 @@ export default React.createClass({
     },
 
     doLogin() {
-
+        console.log(this.state);
     },
 
     render() {
@@ -36,14 +36,14 @@ export default React.createClass({
                 <div className="row">
                     <div className="form-group col-sm-8 col-sm-offset-2">
                         <label for="usr">Name:</label>
-                        <input type="text" className="form-control" id="usr" onChange={this.handleChange}></input>
+                        <input type="text" className="form-control" id="usr" onChange={this.userNameChanged}></input>
                     </div>
                     <div className="form-group col-sm-8 col-sm-offset-2">
                         <label for="pwd">Password:</label>
-                        <input type="password" className="form-control" id="pwd" onChange={this.handleChange}></input>
+                        <input type="password" className="form-control" id="pwd" onChange={this.passwordChanged}></input>
                     </div>
                     <div className="form-group col-sm-8 col-sm-offset-2">
-                        <button className="btn btn-default col-sm-12" onClick={this.doLogin()}>Login</button>
+                        <button className="btn btn-default col-sm-12" onClick={this.doLogin}>Login</button>
                     </div>
                 </div>
             </div>

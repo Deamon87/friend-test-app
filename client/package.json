@@ -16,7 +16,8 @@
     "react-modal": "^1.4.0",
     "react-router": "^2.0.1",
     "react-sanfona": "^0.0.13",
-    "redux": "^0.4.0"
+    "redux": "^0.4.0",
+    "redux-promise": "^0.5.3"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.24.1",
