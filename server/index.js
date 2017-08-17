@@ -16,7 +16,10 @@ app.use(function(req, res, next) {
 
 //Router for API
 var router = express.Router();
-
+router.post("/login", function(req, res) {
+    //login endpoint called
+    res.send({login: "ok"});
+});
 
 app.use('/api', router);
 

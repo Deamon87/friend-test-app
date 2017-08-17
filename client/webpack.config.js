@@ -18,10 +18,10 @@ module.exports = {
         loaders: [
         {
             test: /\.js?$/,
-            loader: 'babel-loader',
+            loader: 'babel',
             exclude: /node_modules/,
             query: {
-                presets: ['babel-preset-es2015', 'react']
+                presets: ['es2015', "stage-0", 'react']
             }
         },
         // Bootstrap 3
