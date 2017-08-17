@@ -39,9 +39,6 @@ export default class LoginComponent extends Component {
     }
 
     render() {
-        let errorMessage = null;
-
-        const showError = (errorMessage != null);
         return (
             <div className="react-login">
                 <div className="row">

@@ -3,8 +3,9 @@ import { doLogin, loginSuccess, loginError } from '../actions/actions';
 import LoginComponent from '../components/loginComponent';
 
 const mapStateToProps = (state) => {
+    if (!state) return {};
     return {
-       // postsList: state.posts.postsList
+        loggedUser: state.loggedUser
     };
 };
 
