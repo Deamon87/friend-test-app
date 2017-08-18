@@ -10,11 +10,8 @@ export default function(state = INITIAL_STATE, action) {
         case DO_LOGIN :
             return { ...state};
         case LOGIN_SUCCESS_ACTION:
-            debugger;
-
             return { ...state, loggedUser: {isLogged: true}};
         case LOGIN_FAILED_ACTION:
-            debugger;
             return { ...state}
         }
 }
