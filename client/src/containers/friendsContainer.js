@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchFriendList, friendListFetched,
-        fetchFriendListNext, friendListNextFetched} from '../actions/actions';
+        fetchFriendListNext, friendListNextFetched,
+        friendListFilter} from '../actions/actions';
 
 import FriendsComponent from '../components/friendsComponent';
 
@@ -8,7 +9,8 @@ const mapStateToProps = (state) => {
     if (!state) return {friendList: []};
     return {
         friendList: state.friendList,
-        page: state.page
+        page: state.page,
+        filter: state.filter
     };
 };
 
@@ -29,6 +31,9 @@ const mapDispatchToProps = (dispatch) => {
                     '';
             });
         },
+        renewFilter(filter) {
+            dispatch(friendListFilter(filter))
+        }
 
     }
 };

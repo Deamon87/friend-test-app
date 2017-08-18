@@ -9,6 +9,8 @@ export const FRIENDS_LIST_FETCHED = "FRIENDS_LIST_FETCHED";
 export const FRIENDS_LIST_FETCH_NEXT = "FRIENDS_LIST_FETCH_NEXT";
 export const FRIENDS_LIST_FETCHED_NEXT = "FRIENDS_LIST_FETCHED_NEXT";
 
+export const FRIEND_LIST_FILTER = "FRIEND_LIST_FILTER";
+
 import { createActions, handleActions, combineActions } from 'redux-actions'
 import axios from 'axios';
 
@@ -101,5 +103,12 @@ export function friendListNextFetched(data) {
     return {
         type: FRIENDS_LIST_FETCHED_NEXT,
         payload: data
+    }
+}
+
+export function friendListFilter(filter) {
+    return {
+        type: FRIEND_LIST_FILTER,
+        payload: filter
     }
 }

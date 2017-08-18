@@ -30,12 +30,41 @@ export default class FriendsComponent extends Component {
         this.props.fetchFriendsListNext(page);
     }
 
+    renewFilter(filter) {
+        this.props.renewFilter(filter);
+    }
+    updateAgeFilter(e) {
+        var input = e.target;
+        var age = +input.value;
+
+        this.renewFilter( {...this.props.filter, age: age})
+    }
+    updateGenderFilter(e) {
+        var input = e.target;
+        var gender = input.value;
+
+        this.renewFilter( {...this.props.filter, gender: gender})
+    }
+
     render() {
         return (
         <div className="container">
             <p className="text-center h3">Friends list</p>
             <div className="row">
-
+                <div className="form-group col-sm-4">
+                    <label for="usr">Age:</label>
+                    <input type="text" className="form-control" onChange={this.updateAgeFilter.bind(this)}></input>
+                </div>
+                <div className="form-group col-sm-4">
+                    <label for="usr">Gender:</label>
+                    <input type="text" className="form-control" onChange={this.updateGenderFilter.bind(this)}></input>
+                </div>
+            </div>
+            <div className="row">
+                <div className="form-group col-sm-4">
+                    <label for="usr">Filter Name:</label>
+                    <input type="text" className="form-control" ></input>
+                </div>
             </div>
             <table className="table table-bordered">
                 <thead>
