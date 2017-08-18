@@ -19,7 +19,8 @@ export default class LoginComponent extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.loggedUser.isLogged) {
+        if (nextProps.loggedUser && nextProps.loggedUser.isLogged) {
+
             this.context.router.push('/friends');
         }
     }

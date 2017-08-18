@@ -1,24 +1,35 @@
 import { connect } from 'react-redux';
-import { fetchFriendList, friendListFetched } from '../actions/actions';
+import { fetchFriendList, friendListFetched,
+        fetchFriendListNext, friendListNextFetched} from '../actions/actions';
 
 import FriendsComponent from '../components/friendsComponent';
 
 const mapStateToProps = (state) => {
     if (!state) return {friendList: []};
     return {
-        friendList: state.friendList
+        friendList: state.friendList,
+        page: state.page
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchFriendsList: (data) => {
-            dispatch(fetchFriendList()).then((response) => {
+            dispatch(fetchFriendList(data)).then((response) => {
                 !response.error ?
                     dispatch(friendListFetched(response.payload.data)) :
                     '';
             });
-        }
+        },
+
+        fetchFriendsListNext: (page) => {
+            dispatch(fetchFriendListNext(page)).then((response) => {
+                !response.error ?
+                    dispatch(friendListNextFetched(response.payload.data)) :
+                    '';
+            });
+        },
+
     }
 };
 

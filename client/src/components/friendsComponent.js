@@ -2,6 +2,10 @@ import React, { Component, PropTypes } from 'react';
 import ReactDom from 'react-dom';
 
 export default class FriendsComponent extends Component {
+    static contextTypes = {
+        router: PropTypes.object
+    };
+
     constructor() {
         super();
         this.state = {friendList: []};
@@ -9,6 +13,21 @@ export default class FriendsComponent extends Component {
 
     componentWillMount() {
         this.props.fetchFriendsList();
+    }
+
+    goNextPage() {
+        var page = this.props.page ? this.props.page : 0;
+        page = page + 1;
+
+        this.props.fetchFriendsListNext(page);
+    }
+
+    goPrevPage() {
+        var page = this.props.page ? this.props.page : 0;
+        if (page > 0) {
+            page = page - 1;
+        }
+        this.props.fetchFriendsListNext(page);
     }
 
     render() {
@@ -44,10 +63,10 @@ export default class FriendsComponent extends Component {
             </table>
             <div className="row">
                 <div className="col-sm-2">
-                    <button className="btn btn-default col-sm-12">Prev</button>
+                    <button className="btn btn-default col-sm-12" onClick={this.goPrevPage.bind(this)}>Prev</button>
                 </div>
                 <div className="col-sm-2 col-sm-offset-8">
-                    <button className="btn btn-default col-sm-12">Next</button>
+                    <button className="btn btn-default col-sm-12" onClick={this.goNextPage.bind(this)}>Next</button>
                 </div>
             </div>
         </div>

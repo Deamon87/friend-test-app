@@ -15,9 +15,12 @@ function requireLogin(nextState, replace) {
 
 export default (store) => (
     <Route path="/">
-        <IndexRedirect to="/signin"/>
 
-        <Route path="signin" component={LoginPage}/>
+
         <Route path="friends" component={FriendsPage} onEnter={requireLogin.bind(store)}/>
+        <Route path="friends/:page" component={FriendsPage} onEnter={requireLogin.bind(store)}/>
+        <IndexRedirect to="/signin"/>
+        <Route path="signin" component={LoginPage}/>
+
     </Route>
 );

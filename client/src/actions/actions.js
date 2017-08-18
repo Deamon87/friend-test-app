@@ -57,10 +57,16 @@ export function loginError(data) {
     };
 }
 
-export function fetchFriendList() {
+export function fetchFriendList(page) {
+    var url;
+    if (page) {
+        url = `/api/friends/${page}`;
+    } else {
+        url = `/api/friends`;
+    }
     const request = axios({
         method: 'get',
-        url: `/api/friends`,
+        url: url,
         headers: []
     });
 
@@ -77,16 +83,17 @@ export function friendListFetched(data) {
     }
 }
 
-export function fetchFriendListNext(data) {
+export function fetchFriendListNext(page) {
     const request = axios({
         method: 'get',
-        url: `/api/friends/{data.start}`,
+        url: `/api/friends/${page}`,
         headers: []
     });
 
     return {
         type: FRIENDS_LIST_FETCH_NEXT,
-        payload: data
+        meta: page,
+        payload: request
     }
 }
 

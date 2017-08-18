@@ -9,7 +9,7 @@ module.exports = function () {
             name : 'Friend ' + i,
             lastname : 'Lastname ' + i,
             age: age,
-            birthDate: birthDate,
+            birthDate: birthDate.toISOString().slice(0,10),
             gender: Math.random() > 0.5 ? 'Male' : 'Female'
         })
     }
