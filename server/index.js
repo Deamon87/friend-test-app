@@ -58,11 +58,23 @@ router.get("/checkLogin", function(req, res) {
 
 
 router.get("/friends", checkUser, function (req, res) {
-    res.send(friendsList.slice(0, 5))
+    var friendsListToSend = friendsList;
+    if (req.query.name) {
+        friendsListToSend = friendsListToSend.filter(a => {
+            return a.name.indexOf(req.query.name) > 0;
+        })
+    }
+    res.send(friendsListToSend.slice(0, 5))
 });
 
 router.get("/friends/:start", checkUser, function (req, res) {
-    res.send(friendsList.slice(req.params.start*5, req.params.start*5+5));
+    var friendsListToSend = friendsList;
+    if (req.query.name) {
+        friendsListToSend = friendsListToSend.filter(a => {
+            return a.name.indexOf(req.query.name) > 0;
+        })
+    }
+    res.send(friendsListToSend.slice(req.params.start*5, req.params.start*5+5));
 });
 
 app.use('/api', router);

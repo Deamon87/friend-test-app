@@ -1,7 +1,9 @@
 import {DO_LOGIN, LOGIN_SUCCESS_ACTION ,LOGIN_FAILED_ACTION,
         FRIENDS_LIST_FETCH, FRIENDS_LIST_FETCHED,
         FRIENDS_LIST_FETCH_NEXT, FRIENDS_LIST_FETCHED_NEXT,
-        FRIEND_LIST_FILTER} from '../actions/actions';
+        FRIEND_LIST_FILTER,
+        FRIEND_LIST_FILTER_SERVER,
+        FRIEND_LIST_FILTER_SERVER_FETCHED} from '../actions/actions';
 
 const INITIAL_STATE = {
     loggedUser: {isLogged: false},
@@ -50,5 +52,8 @@ export default function(state = INITIAL_STATE, action) {
 
         case FRIEND_LIST_FILTER:
             return {...state, filter: action.payload, friendList : filterFriendList(state.originalFriendList, action.payload)}
+
+        case FRIEND_LIST_FILTER_SERVER:
+            return {...state, filter: action.payload, friendList : filterFriendList(action.payload, state.filter)}
     }
 }

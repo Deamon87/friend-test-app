@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import { fetchFriendList, friendListFetched,
         fetchFriendListNext, friendListNextFetched,
-        friendListFilter} from '../actions/actions';
+        friendListFilter,
+        friendListFilterServer, friendListFilterServerFetched
+        } from '../actions/actions';
 
 import FriendsComponent from '../components/friendsComponent';
 
@@ -33,7 +35,15 @@ const mapDispatchToProps = (dispatch) => {
         },
         renewFilter(filter) {
             dispatch(friendListFilter(filter))
+        },
+        filterByName(name, page) {
+            dispatch(friendListFilterServer(name, page)).then((response) => {
+                !response.error ?
+                    dispatch(friendListFilterServerFetched(response.payload.data)) :
+                    '';
+            });
         }
+
 
     }
 };

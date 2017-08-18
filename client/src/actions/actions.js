@@ -10,6 +10,8 @@ export const FRIENDS_LIST_FETCH_NEXT = "FRIENDS_LIST_FETCH_NEXT";
 export const FRIENDS_LIST_FETCHED_NEXT = "FRIENDS_LIST_FETCHED_NEXT";
 
 export const FRIEND_LIST_FILTER = "FRIEND_LIST_FILTER";
+export const FRIEND_LIST_FILTER_SERVER = "FRIEND_SERVER_LIST_FILTER";
+export const FRIEND_LIST_FILTER_SERVER_FETCHED = "FRIEND_LIST_FILTER_SERVER_FETCHED";
 
 import { createActions, handleActions, combineActions } from 'redux-actions'
 import axios from 'axios';
@@ -110,5 +112,33 @@ export function friendListFilter(filter) {
     return {
         type: FRIEND_LIST_FILTER,
         payload: filter
+    }
+}
+
+export function friendListFilterServer(name, page) {
+    var request;
+    if (name) {
+        request = axios({
+            method: 'get',
+            url: `/api/friends/${page}?name=${name}`,
+            headers: []
+        });
+    } else {
+        request = axios({
+            method: 'get',
+            url: `/api/friends/${page}`,
+            headers: []
+        });
+    }
+
+    return {
+        type: FRIEND_LIST_FILTER,
+        payload: request
+    }
+}
+export function friendListFilterServerFetched(data) {
+    return {
+        type: FRIENDS_LIST_FETCHED_NEXT,
+        payload: data
     }
 }

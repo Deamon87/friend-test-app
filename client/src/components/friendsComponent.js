@@ -46,6 +46,12 @@ export default class FriendsComponent extends Component {
         this.renewFilter( {...this.props.filter, gender: gender})
     }
 
+    updateNameFilter(e) {
+        var input = e.target;
+        var name = input.value;
+
+        this.props.filterByName( name, this.props.page)
+    }
     render() {
         return (
         <div className="container">
@@ -63,7 +69,7 @@ export default class FriendsComponent extends Component {
             <div className="row">
                 <div className="form-group col-sm-4">
                     <label for="usr">Filter Name:</label>
-                    <input type="text" className="form-control" ></input>
+                    <input type="text" className="form-control" onChange={this.updateNameFilter.bind(this)}></input>
                 </div>
             </div>
             <table className="table table-bordered">
