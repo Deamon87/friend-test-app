@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
-import { fetchFriendList } from '../actions/actions';
+import { fetchFriendList, friendListFetched } from '../actions/actions';
 
 import FriendsComponent from '../components/friendsComponent';
 
 const mapStateToProps = (state) => {
-    if (!state) return {};
+    if (!state) return {friendList: []};
     return {
-
+        friendList: state.friendList
     };
 };
 

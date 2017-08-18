@@ -21,7 +21,7 @@ app.use(function(req, res, next) {
 //Router for API
 app.use(session({
     secret: 'secret-some',
-    cookie: {maxAge: 60000},
+    cookie: {maxAge: 10*60*1000},
     resave: false,
     saveUninitialized: true
 }));

@@ -58,9 +58,15 @@ export function loginError(data) {
 }
 
 export function fetchFriendList() {
+    const request = axios({
+        method: 'get',
+        url: `/api/friends`,
+        headers: []
+    });
+
     return {
         type: FRIENDS_LIST_FETCH,
-        payload: {}
+        payload: request
     }
 }
 
@@ -71,7 +77,13 @@ export function friendListFetched(data) {
     }
 }
 
-export function fetchfriendList(data) {
+export function fetchFriendListNext(data) {
+    const request = axios({
+        method: 'get',
+        url: `/api/friends/{data.start}`,
+        headers: []
+    });
+
     return {
         type: FRIENDS_LIST_FETCH_NEXT,
         payload: data
