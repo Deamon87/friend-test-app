@@ -30,3 +30,4 @@ In `server` directory run
 
 This will start the server at `localhost:8080`
 
+You can use any login password to access the website
