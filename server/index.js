@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var session = require('express-session');
-var friendListCreator = require(friendListCreator);
+var friendListCreator = require('./friendsCreator.js');
 var app = express();
 
 var friendsList = friendListCreator();
@@ -49,7 +49,11 @@ router.get("/logout", function(req, res) {
 
 
 router.get("/friends", checkUser, function (req, res) {
+    res.send(friendsList.slice(0, 5))
+});
 
+router.get("/friends/:start", checkUser, function (req, res) {
+    res.send(friendsList.slice(req.params.start*5, req.params.start*5+5));
 });
 
 app.use('/api', router);
