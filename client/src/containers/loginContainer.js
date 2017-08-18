@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { doLogin, loginSuccess, loginError } from '../actions/actions';
+import { doLogin, checkLogin, loginSuccess, loginError } from '../actions/actions';
 import LoginComponent from '../components/loginComponent';
 
 const mapStateToProps = (state) => {
@@ -16,6 +16,12 @@ const mapDispatchToProps = (dispatch) => {
                 !response.error ?
                     dispatch(loginSuccess(response.payload.data)) :
                     dispatch(loginError(response.payload.data));
+            });
+        },
+        checkLogin: () => {
+            dispatch(checkLogin()).then((response) => {
+                !response.error ?
+                    dispatch(loginSuccess(response.payload.data)):'';
             });
         }
     }

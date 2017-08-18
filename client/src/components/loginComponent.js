@@ -14,6 +14,10 @@ export default class LoginComponent extends Component {
         }
     }
 
+    componentWillMount() {
+        this.props.checkLogin();
+    }
+
     componentWillReceiveProps(nextProps) {
         if (nextProps.loggedUser.isLogged) {
             this.context.router.push('/friends');

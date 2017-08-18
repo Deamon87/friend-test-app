@@ -24,7 +24,7 @@ app.use(session({
     cookie: {maxAge: 60000},
     resave: false,
     saveUninitialized: true
-}))
+}));
 
 function checkUser(req, res, next) {
     if (!req.session.isLogged) {
@@ -45,6 +45,15 @@ router.get("/logout", function(req, res) {
     //login endpoint called
     req.session.isLogged = false;
     res.send({login: "loggedout"});
+});
+
+router.get("/checkLogin", function(req, res) {
+    //login endpoint called
+    if (req.session && req.session.isLogged) {
+        res.send({login: "ok"});
+    } else {
+        res.status(403).send('Not authorized');
+    }
 });
 
 
